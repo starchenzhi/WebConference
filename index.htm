@@ -48,9 +48,9 @@
     
     <section id="schedule">
       <ul id="filter">
-        <li><button onclick="filterSpeech('Date1')" class="filter-active"> Date 1</button></li>
-        <li><button onclick="filterSpeech('Date2')"> Date 2</button></li>
-        <li><input type="checkbox" onclick="filterSpeech()" >Filter</input></li>
+        <li><button class="filter-active" data-filter="date1"> Date 1</button></li>
+        <li><button data-filter="date2"> Date 2</button></li>
+        <li><input type="checkbox" onclick="filterSpeech(this)" >Filter</input></li>
       </ul>
  
       <table id="schedule-data">

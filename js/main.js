@@ -16,6 +16,13 @@ $(window).on("load", function(){
   $('#filter button').click(function(){
     $('.filter-active').removeClass('filter-active');
     $(this).addClass('filter-active');   
+    
+    filter.schedule = $(this).data("filter");
+    
+    database.ref("schedule/" + filter.schedule).once("value").then(function(snapshot){
+      loadSpeechData(snapshot);   
+    });
+    
   });
 });
 
@@ -44,6 +51,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var filter = {"schedule":"date1", "filterGoingOn": false,};
 var database = firebase.database(); 
 database.ref("schedule/date1").once("value").then(function(snapshot){
   loadSpeechData(snapshot);   
@@ -55,17 +63,25 @@ database.ref("Speakers").once("value").then(function(snapshot){
 
 
 function loadSpeechData(snapshot) {  
+
   var scheduleData = snapshot.val();
   var index = 0;
   var scheduleTable = document.getElementById("schedule-data");
+  $("#schedule-data tr").remove(); //clear the table.
   
   for(var key in scheduleData) {
+    
+    if(filter.filterGoingOn && scheduleData[key].attending == false) {
+      continue;
+    }
+    
     var row = scheduleTable.insertRow(index);
-    row.setAttribute("data-path", "schedule/date1/" + key  + "/attending");
+    row.setAttribute("data-path", String.format("schedule/{0}/{1}/attending", filter.schedule, key));
     row.setAttribute("data-attending", scheduleData[key].attending );
     row.insertCell(0).innerHTML = String.format('<i class="fa fa-clock-o"></i> {0}', scheduleData[key].time);
     row.insertCell(1).innerHTML = String.format('<i class="fa fa-map-marker"></i> {0}', scheduleData[key].room);
     row.insertCell(2).innerHTML = String.format('<i class="fa fa-comments"></i> {0}', scheduleData[key].title);
+
     if(scheduleData[key].attending) {
       row.insertCell(3).innerHTML = '<button class="schedule-going" onclick="attend(this);"><i class="fa fa-check-square-o"></i> Going</button>';
     } else {
@@ -123,7 +139,11 @@ function showProfile(id){
   });
 }
 
-function filterSpeech(condition) {
+function filterSpeech(self) {
+  filter.filterGoingOn = self.checked;
   
+  database.ref("schedule/" + filter.schedule).once("value").then(function(snapshot){
+    loadSpeechData(snapshot);   
+  });
 }
 
