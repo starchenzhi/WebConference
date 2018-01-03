@@ -4,13 +4,13 @@
   <head>
     <!-- Meta -->
     <meta charset="utf-8">
-    <meta name="keywords" content="WebChat">
-    <meta name="description" content="Web Conference">
+    <meta name="keywords" content="WebCalendar">
+    <meta name="description" content="A website allows people to check available speeches.">
     <meta name="author" content="Bruna Su">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Title -->
-    <title>Web Conference</title>
+    <title>Web Calendar</title>
   
     <!-- Favicons -->
     <link rel="shortcut icon" href="images/logo.png">
@@ -42,20 +42,19 @@
     </nav>
     
     <section id="home">
-      <h1>Welcome to WebConference!</h1>
-      <h4>A website allows people across the world talking over web.</h4>
+      <h1>Welcome to WebCalendar!</h1>
+      <h4>A website allows people to check available speeches.</h4>
     </section>
     
     <section id="schedule">
-      
+      <ul id="filter">
+        <li><button onclick="filterSpeech('Date1')" class="filter-active"> Date 1</button></li>
+        <li><button onclick="filterSpeech('Date2')"> Date 2</button></li>
+        <li><input type="checkbox" onclick="filterSpeech()" >Filter</input></li>
+      </ul>
+ 
       <table id="schedule-data">
-        <tr>
-          <td colspan="4">
-            <button onclick="filterSpeech('Date1')">Date 1</button>
-            <button onclick="filterSpeech('Date2')">Date 2</button>
-            <input type="checkbox" onclick="filterSpeech()">Filter</input>
-          </td>
-        </tr>        
+        <!-- Will automatically load data here from Firebase. -->      
       </table>
       
     </section>
@@ -71,11 +70,11 @@
           <div class="close-button" onclick="$('#profile').hide();"><i class="fa fa-times"></i></div>
           <table>
             <tr>
-              <td><img src="images/profile.jpg" id="profile-photo"></td>
+              <td><img src="images/BillChen.jpg" id="profile-photo"></td>
               <td>             
                 <div>
-                  <h2 id="profile-name">Bruna Su</h2>
-                  <h5 id="profile-title">Web Developer</h5>
+                  <h1 id="profile-name">Bruna Su</h1>
+                  <h3 id="profile-title">Web Developer</h3>
                 </div>              
               </td>
             </tr>

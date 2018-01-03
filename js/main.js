@@ -10,7 +10,13 @@ $(window).on("load", function(){
     $(this).addClass('active');    
     var activeTab = $(this).data('tab');
     $(activeTab).show();
-  });  
+  });
+  
+   //Click event for the filter.
+  $('#filter button').click(function(){
+    $('.filter-active').removeClass('filter-active');
+    $(this).addClass('filter-active');   
+  });
 });
 
 String.format = function() {
@@ -39,7 +45,7 @@ var config = {
 firebase.initializeApp(config);
 
 var database = firebase.database(); 
-database.ref("schedule").once("value").then(function(snapshot){
+database.ref("schedule/date1").once("value").then(function(snapshot){
   loadSpeechData(snapshot);   
 });
 
@@ -50,19 +56,42 @@ database.ref("Speakers").once("value").then(function(snapshot){
 
 function loadSpeechData(snapshot) {  
   var scheduleData = snapshot.val();
-  var index = 1;
+  var index = 0;
   var scheduleTable = document.getElementById("schedule-data");
   
   for(var key in scheduleData) {
-    var speechData = scheduleData[key];
-    for(var session in speechData) {
-      var row = scheduleTable.insertRow(index);
-      row.insertCell(0).innerHTML = String.format('<i class="fa fa-clock-o"></i> {0}', speechData[session].time);
-      row.insertCell(1).innerHTML = String.format('<i class="fa fa-map-marker"></i> {0}', speechData[session].room);
-      row.insertCell(2).innerHTML = String.format('<i class="fa fa-comments"></i> {0}', speechData[session].title);
-      row.insertCell(3).innerHTML = String.format('<button class="schedule-attend"><i class="fa fa-sign-in"></i> Attend</button>');
-      index++;
+    var row = scheduleTable.insertRow(index);
+    row.setAttribute("data-path", "schedule/date1/" + key  + "/attending");
+    row.setAttribute("data-attending", scheduleData[key].attending );
+    row.insertCell(0).innerHTML = String.format('<i class="fa fa-clock-o"></i> {0}', scheduleData[key].time);
+    row.insertCell(1).innerHTML = String.format('<i class="fa fa-map-marker"></i> {0}', scheduleData[key].room);
+    row.insertCell(2).innerHTML = String.format('<i class="fa fa-comments"></i> {0}', scheduleData[key].title);
+    if(scheduleData[key].attending) {
+      row.insertCell(3).innerHTML = '<button class="schedule-going" onclick="attend(this);"><i class="fa fa-check-square-o"></i> Going</button>';
+    } else {
+      row.insertCell(3).innerHTML = '<button class="schedule-attend" onclick="attend(this);"><i class="fa fa-calendar-plus-o"></i> Attend</button>';
     }
+    
+    index++;
+  }
+}
+
+function attend(self) {
+  var path = self.parentNode.parentNode.getAttribute('data-path');
+  var attendingValue = (self.parentNode.parentNode.getAttribute('data-attending') == "true");
+  
+  var updates = {};
+  updates[path] = !attendingValue;
+  firebase.database().ref().update(updates);
+  
+  if(attendingValue) {
+    self.className = "schedule-attend";    
+    self.innerHTML = '<i class="fa fa-calendar-plus-o"></i> Attend';
+    self.parentNode.parentNode.setAttribute('data-attending', false);
+  } else {
+    self.className = "schedule-going";
+    self.innerHTML = '<i class="fa fa-check-square-o"></i> Going';
+    self.parentNode.parentNode.setAttribute('data-attending', true);
   }
 }
 
@@ -76,7 +105,6 @@ function loadSpeakerData(snapshot) {
     var ul = document.getElementById("speaker-list");
     var li = document.createElement("li");
     li.innerHTML = speaker;
-    //li.appendChild(li);
     ul.appendChild(li);
   }  
 }

@@ -28,6 +28,10 @@ a:hover {
   text-decoration: underline;
 }
 
+button:focus {
+  outline: none;
+}
+
 nav ul {
   border-bottom: 1px solid #0f8a07;
   margin: 10px;
@@ -81,11 +85,34 @@ section {
   padding: 3px 10px;
 }
 
-.schedule-item {
-  border-bottom: 1px dashed green;
+#filter li {
+  display: inline-block;
+  padding: 0px 10px;
 }
 
-.schedule-time {
+#filter li button{
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
+  border-radius: 30px;
+  color: black;
+  padding: 3px 20px;
+  cursor: pointer;
+}
+
+#filter li button:hover {
+  background-color: orange;
+  border-color: orange;
+}
+
+.filter-active {
+  background-color: green !important;
+  border: 1px solid green !important;
+  color: white !important;
+}
+
+.filter-active:before {
+  font-family: FontAwesome;
+  content: "\f00c" !important;
 }
 
 .schedule-attend {
@@ -102,10 +129,24 @@ section {
   transition: 0.4s ease;
 }
 
-.schedule-attend:hover {
-  background-color: green;
+.schedule-going {
+    margin-left: 10px;
+    width: 100px;
+    background-color: #b8fcb8;
+    color: black;
+    padding: 0 15px;
+    border-radius: 40px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    border: 1px solid #5bdd11;
+    transition: 0.4s ease;
+}
+
+#schedule-data button:hover {
+  background-color: orange;
   color: white;
-  border-color: green;
+  border-color: orange;
 }
 
 #speakers {
@@ -121,12 +162,15 @@ section {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.8); 
 }
+
+
 #placeholder {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 #profile-frame {
   background-color: white;
   border: 5px solid rgba(0, 128, 0, 0.85);
@@ -171,10 +215,18 @@ section {
   padding: 8px;
 }
 
+#profile-name {
+  font-weight: bolder;
+}
+
 #profile-photo {
   width: 100px;
   height: 100px;
 }
 
+#profile-title {
+  color: black;
+  font-weight: normal;
+}
 
 
