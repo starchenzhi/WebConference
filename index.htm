@@ -1,0 +1,109 @@
+<!doctype html>
+<!--This webpage is built by Bruna Su, for more information, pleaase email: BillChenGreat@Gmail.com-->
+<html lang="en">
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="keywords" content="WebChat">
+    <meta name="description" content="Web Conference">
+    <meta name="author" content="Bruna Su">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Title -->
+    <title>Web Conference</title>
+  
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="images/logo.png">
+    
+    <!-- Google Web Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100' rel='stylesheet' type='text/css'> 
+    
+    <!-- Bootstrap, jQuery, awesome font -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  
+    <!-- CSS, JS for WebConference -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/main.js"></script>
+  </head>
+  
+  <body>
+    <nav>
+      <ul>
+        <li class="active" data-tab="#home"><i class="fa fa-home"></i> HOME</li>
+        <li data-tab="#schedule"><i class="fa fa-calendar"></i> SCHEDULE</li>
+        <li data-tab="#speakers"><i class="fa fa-users"></i> SPEAKERS</li>
+      </ul>
+    </nav>
+    
+    <section id="home">
+      <h1>Welcome to WebConference!</h1>
+      <h4>A website allows people across the world talking over web.</h4>
+    </section>
+    
+    <section id="schedule">
+      
+      <table id="schedule-data">
+        <tr>
+          <td colspan="4">
+            <button onclick="filterSpeech('Date1')">Date 1</button>
+            <button onclick="filterSpeech('Date2')">Date 2</button>
+            <input type="checkbox" onclick="filterSpeech()">Filter</input>
+          </td>
+        </tr>        
+      </table>
+      
+    </section>
+    
+    <section id="speakers">
+      <ul id="speaker-list">
+      </ul>
+    </section>       
+   
+    <section id="profile">
+      <div id="placeholder">
+        <div id="profile-frame">
+          <div class="close-button" onclick="$('#profile').hide();"><i class="fa fa-times"></i></div>
+          <table>
+            <tr>
+              <td><img src="images/profile.jpg" id="profile-photo"></td>
+              <td>             
+                <div>
+                  <h2 id="profile-name">Bruna Su</h2>
+                  <h5 id="profile-title">Web Developer</h5>
+                </div>              
+              </td>
+            </tr>
+            
+            <tr>
+              <td width="120">Company</td>
+              <td id="profile-company">Microsoft</td>
+            </tr>
+            
+            <tr>
+              <td>Email</td>
+              <td id="profile-email">(+1) 416 432 8763</td>
+            </tr>
+            
+            <tr>
+              <td>Phone</td>
+              <td id="profile-phone">(+1) 416 545 5974</td>
+            </tr>
+            
+            <tr>
+              <td>About</td>
+              <td id="profile-about">2996 Don Mills Rd<br>North York, ON</td>
+            </tr>
+            
+          </table>
+        </div>
+      </div>
+    </section>
+    
+  </body>
+</html>

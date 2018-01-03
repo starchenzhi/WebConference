@@ -1,0 +1,43 @@
+{
+  "Speakers" : [ {
+    "about" : "He is a great guy.",
+    "company" : "Microsoft",
+    "email" : "test1@gmail.com",
+    "name" : "Bruna Su",
+    "phone" : "416 432 8908",
+    "photo" : "/images/BrunaSu.jpg",
+    "title" : "Senior Software Developer"
+  }, {
+    "about" : "He is smart guy.",
+    "company" : "Google",
+    "email" : "bill.chen@outlook.com",
+    "name" : "Bill Chen",
+    "phone" : "437 374 6333",
+    "photo" : "/images/BillChen.jpg",
+    "title" : "Manager of Engineering"
+  } ],
+  "schedule" : {
+    "date1" : [ {
+      "attending" : true,
+      "room" : "Room 2",
+      "time" : "09:00 ~ 10:30",
+      "title" : "How to make a dog fly?"
+    }, {
+      "attending" : false,
+      "room" : "Room 1",
+      "time" : "11:00 ~ 12:30",
+      "title" : "Reading can change one's whole life"
+    } ],
+    "date2" : [ {
+      "attending" : true,
+      "room" : "Room 5",
+      "time" : "08:30 ~ 10:00",
+      "title" : "Dance with elephants"
+    }, {
+      "attending" : false,
+      "room" : "Room 3",
+      "time" : "11:30 ~ 13:00",
+      "title" : "Will AI really change our world?"
+    } ]
+  }
+}

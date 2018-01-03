@@ -1,0 +1,180 @@
+/*
+Theme Name: Web Conference
+Author: Bruna Su
+Version: 0.0.1
+Tags: Style of Web Conference
+*/
+
+body {
+  font-size: 14px;
+  font-family: 'Helvetica Neue',Roboto,Helvetica,Arial,sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #282828;
+  -ms-overflow-style: scrollbar;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: green;
+  text-decoration: underline;
+}
+
+nav ul {
+  border-bottom: 1px solid #0f8a07;
+  margin: 10px;
+}
+
+nav li {
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  font: bold 16px 'Roboto Condensed';
+  border: 1px solid #0a9906;
+  color: #005700;
+  border-radius: 6px 6px 0 0;
+  border-bottom: none;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+nav li:first-child {
+  margin-left: 10px;
+}
+
+nav li:hover {
+  background-color: green;
+  color: white;
+}
+
+.active {
+  background-color: green;
+  color: white;
+}
+
+section {
+  padding: 10px 20px;
+}
+
+#home {
+
+}
+
+#home h1, h3 {
+  color: green;
+}
+
+#schedule {
+  display: none;
+}
+
+#schedule table td {
+  padding: 3px 10px;
+}
+
+.schedule-item {
+  border-bottom: 1px dashed green;
+}
+
+.schedule-time {
+}
+
+.schedule-attend {
+  margin-left: 10px;
+  width: 100px;
+  background-color: white;
+  color: black;
+  padding: 0 15px;
+  border-radius: 40px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  border: 1px solid black;
+  transition: 0.4s ease;
+}
+
+.schedule-attend:hover {
+  background-color: green;
+  color: white;
+  border-color: green;
+}
+
+#speakers {
+  display: none;
+}
+
+#profile {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8); 
+}
+#placeholder {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#profile-frame {
+  background-color: white;
+  border: 5px solid rgba(0, 128, 0, 0.85);
+  border-radius: 10px;
+  
+  animation: scale;
+  animation-duration: 0.6s;
+  animation-timing-function: ease;
+}
+
+@keyframes scale {
+  from { transform: scale(0, 0); }
+  to { transform: scale(1, 1); }
+}
+.close-button {
+    width: 24px;
+    height: 24px;
+    background-color: #269326;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.close-button:hover {
+  background-color: orange;
+}
+
+#profile table {
+  margin: auto;
+  display: block;
+  padding: 20px;
+}
+
+#profile table td {
+  padding: 8px;
+}
+
+#profile-photo {
+  width: 100px;
+  height: 100px;
+}
+
+
+
