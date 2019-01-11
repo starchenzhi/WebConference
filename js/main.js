@@ -26,6 +26,7 @@ $(window).on("load", function(){
   });
 });
 
+//This function is used to format a string for convenience, its functionality is the same with "String.format" in Java.
 String.format = function() {
     // The string containing the format items (e.g. "{0}")
     // will and always has to be the first argument.
@@ -41,6 +42,7 @@ String.format = function() {
     return theString;
 }
 
+//Firebase configuration.
 var config = {
   apiKey: "AIzaSyAKWwg8vPhKfnqINaBfSmQvNgNPTjLOis8",
   authDomain: "webconference-2018.firebaseapp.com",
@@ -51,6 +53,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+//Load default data when the page is just opened.
 var filter = {"schedule":"date1", "filterGoingOn": false,};
 var database = firebase.database(); 
 database.ref("schedule/date1").once("value").then(function(snapshot){
@@ -62,6 +65,7 @@ database.ref("Speakers").once("value").then(function(snapshot){
 });
 
 
+//Load data based on filter conditions.
 function loadSpeechData(snapshot) {  
 
   var scheduleData = snapshot.val();
@@ -92,6 +96,7 @@ function loadSpeechData(snapshot) {
   }
 }
 
+//After a user clicks "attend", this function will update firebase.
 function attend(self) {
   var path = self.parentNode.parentNode.getAttribute('data-path');
   var attendingValue = (self.parentNode.parentNode.getAttribute('data-attending') == "true");
@@ -111,6 +116,7 @@ function attend(self) {
   }
 }
 
+//Load all speakers' data.
 function loadSpeakerData(snapshot) {
   var speakerData = snapshot.val();
   var index = 0;
@@ -125,6 +131,7 @@ function loadSpeakerData(snapshot) {
   }  
 }
 
+//Show a speaker's detail information.
 function showProfile(id){
   $("#profile").show();
   database.ref("Speakers/" + id ).once("value").then(function(snapshot){
@@ -139,6 +146,7 @@ function showProfile(id){
   });
 }
 
+//After clicking "filter", it will show only "going" events or in reverse.
 function filterSpeech(self) {
   filter.filterGoingOn = self.checked;
   
